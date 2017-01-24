@@ -19,67 +19,102 @@ public class ClientRegistrationForm extends Application {
         GridPane gridPane = new GridPane();
         gridPane.setId("grid-pane");
 
-        // Dados de identificação
-        Text text0 = new Text();
-        text0.setText("Dados de identificação");
-        text0.setId("title-text");
-        gridPane.add(text0, 0, 0);
-
-        // Tipo de pessoa (1)
+        // Dados de identificação (1)
         Text text1 = new Text();
-        text1.setText("Tipo de pessoa:");
-        text1.setId("standard-text");
-        ChoiceBox<String> choiceBox1 = new ChoiceBox<>();
-        choiceBox1.setItems(FXCollections.observableArrayList("Física", "Jurídica", "Órgão Público"));
-        HBox hBox1 = new HBox();
-        hBox1.setId("hbox");
-        hBox1.getChildren().addAll(text1, choiceBox1);
-        VBox vBox1 = new VBox();
-        vBox1.setId("vbox");
-        vBox1.getChildren().add(hBox1);
-        gridPane.add(vBox1, 0, 1);
+        text1.setText("Dados de identificação");
+        text1.setId("title-text");
+        gridPane.add(text1, 0, 0);
 
-        // CPF/CNPJ (2)
+        // Tipo de pessoa (2)
         Text text2 = new Text();
-        text2.setText("CPF");
-        text2.setId("standard-text");
-        MaskField maskField2 = new MaskField();
-        maskField2.setMask("DDD.DDD.DDD-DD");
-        maskField2.setMaxWidth(100);
+        text2.setText("Tipo de pessoa:");
+        ChoiceBox<String> choiceBox2 = new ChoiceBox<>();
+        choiceBox2.setItems(FXCollections.observableArrayList("Física", "Jurídica", "Órgão Público"));
+        HBox hBox2 = new HBox();
+        hBox2.setStyle("-fx-spacing: 10; -fx-alignment: center-left;");
+        hBox2.getChildren().addAll(text2, choiceBox2);
         VBox vBox2 = new VBox();
-        vBox2.setId("vbox");
-        vBox2.getChildren().addAll(text2, maskField2);
-        gridPane.add(vBox2, 1, 1);
+        vBox2.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox2.getChildren().add(hBox2);
+        gridPane.add(vBox2, 0, 1);
 
-        // Nome completo * (3)
+        // CPF/CNPJ (3)
         Text text3 = new Text();
-        text3.setText("Nome completo");
-        text3.setId("standard-text");
+        text3.setText("CPF");
+        MaskField maskField3 = new MaskField();
+        maskField3.setMask("DDD.DDD.DDD-DD");
+        maskField3.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 112px;");
+        VBox vBox3 = new VBox();
+        vBox3.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox3.getChildren().addAll(text3, maskField3);
+        gridPane.add(vBox3, 1, 1);
+
+        // Nome completo * (4)
+        Text text4 = new Text();
+        text4.setText("Nome completo");
         Label redAsterisk = new Label(" *");
         redAsterisk.setId("red-asterisk-text");
-        HBox hBox3 = new HBox();
-        hBox3.getChildren().addAll(text3, redAsterisk);
-        TextField textField3 = new TextField();
-        VBox vBox3 = new VBox();
-        vBox3.setId("vbox");
-        vBox3.getChildren().addAll(hBox3, textField3);
-        gridPane.add(vBox3, 0, 2, 2, 1);
-
-        // Nome abreviado/Apelido (4)
-        Text text4 = new Text();
-        text4.setText("Nome abreviado/Apelido");
-        text4.setId("standard-text");
+        HBox hBox4 = new HBox();
+        hBox4.getChildren().addAll(text4, redAsterisk);
         TextField textField4 = new TextField();
         VBox vBox4 = new VBox();
-        vBox4.setId("vbox");
-        vBox4.getChildren().addAll(text4, textField4);
-        gridPane.add(vBox4, 0, 3, 2, 1);
+        vBox4.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox4.getChildren().addAll(hBox4, textField4);
+        gridPane.add(vBox4, 0, 2, 2, 1);
 
-        // Adicionar endereço (5)
-        Hyperlink hyperlink5 = new Hyperlink();
-        hyperlink5.setText("Adicionar Endereço");
-        hyperlink5.setId("hyperlink");
-        gridPane.add(hyperlink5, 0, 4);
+        // Nome abreviado/Apelido (5)
+        Text text5 = new Text();
+        text5.setText("Nome abreviado/Apelido");
+        TextField textField5 = new TextField();
+        VBox vBox5 = new VBox();
+        vBox5.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox5.getChildren().addAll(text5, textField5);
+        gridPane.add(vBox5, 0, 3, 2, 1);
+
+        // Endereço (6)
+        ToggleGroup group = new ToggleGroup();
+        RadioButton button1 = new RadioButton("Usar endereço");
+        button1.setToggleGroup(group);
+        button1.setSelected(true);
+        RadioButton button2 = new RadioButton("Não usar endereço");
+        button2.setToggleGroup(group);
+        button2.setSelected(true);
+        HBox hBox6 = new HBox();
+        hBox6.setStyle("-fx-spacing: 10;");
+        hBox6.getChildren().addAll(button1, button2);
+        gridPane.add(hBox6, 0, 4);
+
+        // CEP (7)
+        Text text7 = new Text();
+        text7.setText("CEP");
+        MaskField maskField7 = new MaskField();
+        maskField7.setMask("DDDDD-DDD");
+        maskField7.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 84px;");
+        VBox vBox7 = new VBox();
+        vBox7.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox7.getChildren().addAll(text7, maskField7);
+        gridPane.add(vBox7, 0, 5);
+
+        // Logradouro (8)
+        Text text8 = new Text();
+        text8.setText("Logradouro");
+        TextField textField8 = new TextField();
+        textField8.setPromptText("Ex.: Av. Brasil");
+        VBox vBox8 = new VBox();
+        vBox8.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox8.getChildren().addAll(text8, textField8);
+        gridPane.add(vBox8, 0, 6, 1, 1);
+
+        // Número (9)
+        Text text9 = new Text();
+        text9.setText("Número");
+        MaskField maskField9 = new MaskField();
+        maskField9.setMask("DDDDDD");
+        maskField9.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-pref-width: 72px;");
+        VBox vBox9 = new VBox();
+        vBox9.setStyle("-fx-spacing: 5; -fx-alignment: bottom-left;");
+        vBox9.getChildren().addAll(text9, maskField9);
+        //gridPane.add(vBox9, 1, 7);
 
         // Scroll pane
         ScrollPane scrollPane = new ScrollPane();

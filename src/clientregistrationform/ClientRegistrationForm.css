@@ -6,35 +6,18 @@
 }
 
 #title-text {
-    -fx-font-family: "Arial";
+    -fx-font-family: "Sans Serif";
     -fx-font-size: 16px;
     -fx-font-weight: bold;
 }
 
-#standard-text {
-    -fx-font-family: "Arial";
+.text {
+    -fx-font-family: "Sans Serif";
     -fx-font-size: 12px;
-}
-
-#hbox {
-    -fx-spacing: 10;
-    -fx-alignment: center;
-}
-
-#vbox {
-    -fx-spacing: 5;
-    -fx-alignment: bottom-left;
 }
 
 #red-asterisk-text {
-    -fx-font-family: "Arial";
+    -fx-font-family: "Sans Serif";
     -fx-font-size: 12px;
     -fx-text-fill: red;
-}
-
-#hyperlink {
-    -fx-graphic: "./res/16/add.png";
-    -fx-font-family: "Arial";
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
 }
