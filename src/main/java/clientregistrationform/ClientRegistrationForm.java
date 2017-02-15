@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import widgets.FxUtilTest;
+import widgets.AutoCompleteComboBox;
 import widgets.MaskField;
 
 public class ClientRegistrationForm extends Application {
@@ -35,7 +35,7 @@ public class ClientRegistrationForm extends Application {
         gridPane.add(CpfCnpjText, 0, 2);
         MaskField CpfCnpjMaskField = new MaskField();
         CpfCnpjMaskField.setMask("DDD.DDD.DDD-DD");
-        CpfCnpjMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 9px;");
+        CpfCnpjMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 112px");
         gridPane.add(CpfCnpjMaskField, 1, 2);
 
         // Nome completo *
@@ -94,9 +94,11 @@ public class ClientRegistrationForm extends Application {
         HBox estadoHBox = new HBox();
         estadoHBox.getChildren().addAll(estadoText, estadoRedAsterisk);
         gridPane.add(estadoHBox, 2, 6);
-        ComboBox<String> estadoComboBox = new ComboBox<>();
+        AutoCompleteComboBox<String> estadoComboBox = new AutoCompleteComboBox<>();
         estadoComboBox.setItems(FXCollections.observableArrayList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"));
-        FxUtilTest.autoCompleteComboBoxPlus(estadoComboBox, (typedText, itemToCompare) -> itemToCompare.toLowerCase().contains(typedText.toLowerCase()));
+        estadoComboBox.setComparisonMethod((typedText, itemToCompare) -> itemToCompare.toLowerCase().contains(typedText.toLowerCase()));
+        estadoComboBox.setMaxNumChars(2);
+        estadoComboBox.initialize();
         gridPane.add(estadoComboBox, 3, 6);
 
         // Cidade
