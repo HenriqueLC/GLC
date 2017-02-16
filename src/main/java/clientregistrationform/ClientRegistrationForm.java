@@ -2,10 +2,12 @@ package clientregistrationform;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import widgets.AutoCompleteComboBox;
@@ -26,7 +28,7 @@ public class ClientRegistrationForm extends Application {
         gridPane.add(tipoDePessoaText, 0, 1);
         ChoiceBox<String> tipoDePessoaChoiceBox = new ChoiceBox<>();
         tipoDePessoaChoiceBox.setItems(FXCollections.observableArrayList("Física", "Jurídica", "Órgão Público"));
-        gridPane.add(tipoDePessoaChoiceBox, 1, 1);
+        gridPane.add(tipoDePessoaChoiceBox, 1, 1, 2, 1);
 
         // CPF/CNPJ
         Text CpfCnpjText = new Text();
@@ -35,20 +37,21 @@ public class ClientRegistrationForm extends Application {
         gridPane.add(CpfCnpjText, 0, 2);
         MaskField CpfCnpjMaskField = new MaskField();
         CpfCnpjMaskField.setMask("DDD.DDD.DDD-DD");
-        CpfCnpjMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 112px");
-        gridPane.add(CpfCnpjMaskField, 1, 2);
+        CpfCnpjMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 115px");
+        gridPane.add(CpfCnpjMaskField, 1, 2, 2, 1);
 
-        // Nome completo *
+        // Nome completo/Razão social *
         Text nomeCompletoRazaoSocialText = new Text();
         nomeCompletoRazaoSocialText.setText("Nome completo");
         nomeCompletoRazaoSocialText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
         Label nomeCompletoRazaoSocialRedAsterisk = new Label(" *");
         nomeCompletoRazaoSocialRedAsterisk.setId("red-asterisk-text");
-        HBox nomeCompletoRazaoSocialHBox = new HBox();
-        nomeCompletoRazaoSocialHBox.getChildren().addAll(nomeCompletoRazaoSocialText, nomeCompletoRazaoSocialRedAsterisk);
-        gridPane.add(nomeCompletoRazaoSocialHBox, 0, 3);
+        HBox nomeCompletoRazaoSocialTextHBox = new HBox();
+        nomeCompletoRazaoSocialTextHBox.getChildren().addAll(nomeCompletoRazaoSocialText, nomeCompletoRazaoSocialRedAsterisk);
+        nomeCompletoRazaoSocialTextHBox.setStyle("-fx-spacing: 0; -fx-alignment: center-left;");
+        gridPane.add(nomeCompletoRazaoSocialTextHBox, 0, 3);
         TextField nomeCompletoRazaoSocialTextField = new TextField();
-        gridPane.add(nomeCompletoRazaoSocialTextField, 1, 3);
+        gridPane.add(nomeCompletoRazaoSocialTextField, 1, 3, 3, 1);
 
         // Nome abreviado/Apelido
         Text nomeAbreviadoApelidoNomeFantasiaText = new Text();
@@ -56,7 +59,7 @@ public class ClientRegistrationForm extends Application {
         nomeAbreviadoApelidoNomeFantasiaText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
         gridPane.add(nomeAbreviadoApelidoNomeFantasiaText, 0, 4);
         TextField nomeAbreviadoApelidoNomeFantasiaTextField = new TextField();
-        gridPane.add(nomeAbreviadoApelidoNomeFantasiaTextField, 1, 4);
+        gridPane.add(nomeAbreviadoApelidoNomeFantasiaTextField, 1, 4, 3, 1);
 
         // Endereço
         ToggleGroup group = new ToggleGroup();
@@ -67,9 +70,9 @@ public class ClientRegistrationForm extends Application {
         button2.setToggleGroup(group);
         button2.setSelected(true);
         HBox endereçoHBox = new HBox();
-        endereçoHBox.setStyle("-fx-spacing: 10;");
+        endereçoHBox.setStyle("-fx-spacing: 10; -fx-alignment: center-left;");
         endereçoHBox.getChildren().addAll(button1, button2);
-        gridPane.add(endereçoHBox, 1, 5);
+        gridPane.add(endereçoHBox, 1, 5, 3, 1);
 
         // CEP *
         Text CepText = new Text();
@@ -77,69 +80,98 @@ public class ClientRegistrationForm extends Application {
         CepText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
         Label CepRedAsterisk = new Label(" *");
         CepRedAsterisk.setId("red-asterisk-text");
-        HBox CepHBox = new HBox();
-        CepHBox.getChildren().addAll(CepText, CepRedAsterisk);
-        gridPane.add(CepHBox, 0, 6);
+        HBox CepTextHBox = new HBox();
+        CepTextHBox.getChildren().addAll(CepText, CepRedAsterisk);
+        CepTextHBox.setStyle("-fx-spacing: 0; -fx-alignment: center-left;");
+        gridPane.add(CepTextHBox, 0, 6);
         MaskField CepMaskField = new MaskField();
         CepMaskField.setMask("DDDDD-DDD");
-        CepMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 74px;");
-        gridPane.add(CepMaskField, 1, 6);
+        CepMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-max-width: 85px;");
+        gridPane.add(CepMaskField, 1, 6, 1, 1);
 
-        // Estado
+        // Estado *
         Text estadoText = new Text();
-        estadoText.setText("UFº");
+        estadoText.setText("UF");
         estadoText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
         Label estadoRedAsterisk = new Label(" *");
         estadoRedAsterisk.setId("red-asterisk-text");
-        HBox estadoHBox = new HBox();
-        estadoHBox.getChildren().addAll(estadoText, estadoRedAsterisk);
-        gridPane.add(estadoHBox, 2, 6);
+        HBox estadoTextHBox = new HBox();
+        estadoTextHBox.getChildren().addAll(estadoText, estadoRedAsterisk);
+        estadoTextHBox.setAlignment(Pos.CENTER_LEFT);
         AutoCompleteComboBox<String> estadoComboBox = new AutoCompleteComboBox<>();
         estadoComboBox.setItems(FXCollections.observableArrayList("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"));
         estadoComboBox.setComparisonMethod((typedText, itemToCompare) -> itemToCompare.toLowerCase().contains(typedText.toLowerCase()));
         estadoComboBox.setMaxNumChars(2);
         estadoComboBox.initialize();
-        gridPane.add(estadoComboBox, 3, 6);
+        estadoComboBox.getEditor().setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px;");
+        estadoComboBox.setStyle("-fx-max-width: 65px;");
+        HBox estadoHBox = new HBox();
+        estadoHBox.getChildren().addAll(estadoTextHBox, estadoComboBox);
+        estadoHBox.setStyle("-fx-spacing: 10; -fx-alignment: center-left;");
+        gridPane.add(estadoHBox, 2, 6, 1, 1);
 
-        // Cidade
+        // Município *
+        Text municipioText = new Text();
+        municipioText.setText("Município");
+        municipioText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
+        Label municipioRedAsterisk = new Label(" *");
+        municipioRedAsterisk.setId("red-asterisk-text");
+        HBox municipioTextHBox = new HBox();
+        municipioTextHBox.getChildren().addAll(municipioText, municipioRedAsterisk);
+        municipioTextHBox.setStyle("-fx-spacing: 0; -fx-alignment: center-left;");
+        gridPane.add(municipioTextHBox, 0, 7);
+        AutoCompleteComboBox<String> municipioComboBox = new AutoCompleteComboBox<>();
+        municipioComboBox.setItems(FXCollections.observableArrayList("Nossa Senhora da Purificação do Desemboque e do Sagrado Sacramento", "Campinas", "Jundiaí", "Cabreúva"));
+        municipioComboBox.setComparisonMethod((typedText, itemToCompare) -> itemToCompare.toLowerCase().contains(typedText.toLowerCase()));
+        municipioComboBox.initialize();
+        municipioComboBox.getEditor().setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px;");
+        //municipioComboBox.setStyle("-fx-pref-width: 500px;");
+        gridPane.add(municipioComboBox, 1, 7, 3, 1);
 
-        // Bairro
-
-        // Logradouro
+        // Logradouro *
         Text logradouroText = new Text();
         logradouroText.setText("Logradouro");
         logradouroText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
         Label logradouroRedAsterisk = new Label(" *");
         logradouroRedAsterisk.setId("red-asterisk-text");
-        HBox logradouroHBox = new HBox();
-        logradouroHBox.getChildren().addAll(logradouroText, logradouroRedAsterisk);
-        gridPane.add(logradouroHBox, 0, 7);
+        HBox logradouroTextHBox = new HBox();
+        logradouroTextHBox.getChildren().addAll(logradouroText, logradouroRedAsterisk);
+        logradouroTextHBox.setStyle("-fx-spacing: 0; -fx-alignment: center-left;");
+        gridPane.add(logradouroTextHBox, 0, 8);
         TextField logradouroTextField = new TextField();
         logradouroTextField.setPromptText("Ex.: Av. Brasil");
-        gridPane.add(logradouroTextField, 1, 7);
 
-        // Número
+        // Número *
         Text numeroText = new Text();
         numeroText.setText("Nº");
         numeroText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
         Label numeroRedAsterisk = new Label(" *");
         numeroRedAsterisk.setId("red-asterisk-text");
-        HBox numeroHBox = new HBox();
-        numeroHBox.getChildren().addAll(numeroText, numeroRedAsterisk);
-        gridPane.add(numeroHBox, 2, 7);
+        HBox numeroTextHBox = new HBox();
+        numeroTextHBox.getChildren().addAll(numeroText, numeroRedAsterisk);
+        numeroTextHBox.setStyle("-fx-spacing: 0; -fx-alignment: center-left;");
         MaskField numeroMaskField = new MaskField();
         numeroMaskField.setMask("DDDDD");
         numeroMaskField.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-pref-width: 50px;");
-        gridPane.add(numeroMaskField, 3, 7);
+        HBox numeroHBox = new HBox();
+        numeroHBox.getChildren().addAll(numeroTextHBox, numeroMaskField);
+        numeroHBox.setStyle("-fx-spacing: 10; -fx-alignment: center-left;");
 
-        // Complemento
+        // Logradouro e número (adição ao painel)
+        HBox logradouroNumeroHBox = new HBox();
+        logradouroNumeroHBox.getChildren().addAll(logradouroTextField, numeroHBox);
+        //HBox.setHgrow(logradouroTextField, Priority.ALWAYS);
+        logradouroNumeroHBox.setStyle("-fx-spacing: 10; -fx-alignment: center-left;");
+        //gridPane.add(logradouroNumeroHBox, 1, 8, 3, 1);
+
+        // Complemento *
         Text complementoText = new Text();
         complementoText.setText("Complemento");
         complementoText.setStyle("-fx-font-family: Sans Serif; -fx-font-size: 12px; -fx-font-weight: bold;");
-        gridPane.add(complementoText, 0, 8);
+        gridPane.add(complementoText, 0, 9);
         TextField complementoTextField = new TextField();
         complementoTextField.setPromptText("Ex.: Ap. 51");
-        gridPane.add(complementoTextField, 1, 8);
+        gridPane.add(complementoTextField, 1, 9, 3, 1);
 
         // Scroll pane
         ScrollPane scrollPane = new ScrollPane();
@@ -153,7 +185,6 @@ public class ClientRegistrationForm extends Application {
         primaryStage.setScene(scene);
         scene.getStylesheets().add(ClientRegistrationForm.class.getResource("ClientRegistrationForm.css").toExternalForm());
         primaryStage.show();
-
 
     }
     public static void main(String[] args) {
