@@ -1,17 +1,63 @@
 #grid-pane {
     -fx-alignment: top-center;
     -fx-hgap: 10;
-    -fx-vgap: 10;
+    -fx-vgap: 5;
     -fx-padding: 10;
 }
 
-#title-text {
+#CPF-CNPJ-mask-field {
     -fx-font-family: "Sans Serif";
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-max-width: 115px
 }
 
-.text {
+#erro-label {
+    -fx-font-family: "Sans Serif";
+    -fx-font-style: italic;
+    -fx-font-size: 10px;
+    -fx-text-fill: red;
+}
+
+#aviso-label {
+    -fx-font-family: "Sans Serif";
+    -fx-font-style: italic;
+    -fx-font-size: 10px;
+    -fx-text-fill: goldenrod;
+}
+
+#excecao-vbox {
+    -fx-spacing: 5;
+    -fx-alignment: baseline-left;
+}
+
+#text-hbox {
+    -fx-spacing: 0;
+    -fx-alignment: center-left;
+}
+
+#endereco-hbox, #numero-hbox {
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+}
+
+#Cep-mask-field {
+    -fx-font-family: "Sans Serif";
+    -fx-font-size: 12px;
+    -fx-max-width: 85px;
+}
+
+#estado-combo-box {
+    -fx-max-width: 65px;
+}
+
+#tipo-de-pessoa-text, #CPF-CNPJ-text, #nome-completo-razao-social-text, #CEP-text, #UF-text, #municipio-text, #bairro-text, #logradouro-text, #numero-text, #complemento-text {
+    -fx-font-family: "Sans Serif";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+}
+
+#textfield {
     -fx-font-family: "Sans Serif";
     -fx-font-size: 12px;
 }
